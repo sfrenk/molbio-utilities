@@ -6,8 +6,15 @@ Automated primer design using Primer3 (can be used as a standalone script or loa
 
 ## ugene_fetch.py
 
-Creates a Ugene (also compatible with ApE) of a specified *C. elegans* genomic region, including gene features.
+Creates a Ugene (also compatible with ApE) of a specified *C. elegans* genomic region, including gene features. Alternatively, add features from a gff/gtf file to a pre-existing Ugene file created using ugene_fetch.
 
-## ugene_add_feature.py
+### Examples:
 
-Add a feature (based on genomic coordinates) to a pre-existing Ugene file created using ugene_fetch.
+Make Ugene file for trt-1
+```
+ugene_fetch.py -c I -s 8768325 -e 8771248 -n trt1
+```
+Add features to trt-1 file
+```
+ugene_fetch.py -g features.gtf -a trt1.gb
+```

@@ -35,7 +35,7 @@ class primerSet(object):
         """ Return primer set info as a string
         """
 
-        return("Fwd: " + self.fwd + "\n" + "Rev: " + self.rev + "\n" + "Product size: " + str(self.size) + "\n" + "Fwd Tm: " + str(self.fwd_tm) + "\n" + "Rev Tm: " + str(self.rev_tm) + "\n" + "Fwd GC: " + str(self.fwd_gc) + "\n" "Rev GC: " + str(self.fwd_gc) + "\n")
+        return("Fwd: " + self.fwd + "\n" + "Rev: " + self.rev + "\n" + "Product size: " + str(self.product_size) + "\n" + "Fwd Tm: " + str(self.fwd_tm) + "\n" + "Rev Tm: " + str(self.rev_tm) + "\n" + "Fwd GC: " + str(self.fwd_gc) + "\n" "Rev GC: " + str(self.fwd_gc) + "\n")
 
 
 def primerSet_from_primer3(p3, p_index):
@@ -101,7 +101,10 @@ def design_primers(seq, size = None, target = None):
 
 
     if size != None:
-        primer_params['PRIMER_PRODUCT_SIZE_RANGE'] = size
+
+        # Accept primers within 50bp of target product size
+
+        primer_params['PRIMER_PRODUCT_SIZE_RANGE'] = [size -50, size + 50]
 
 
     primer = (primer3.bindings.designPrimers(seq_params, primer_params))
